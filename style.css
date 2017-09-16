@@ -1,0 +1,28 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	margin: 20px auto;
+}
+
+.container:after {
+	display: table;
+	content: '';
+	clear: both;
+}
+
+.todo-block {
+	float: left;
+	width: 50%;
+	min-height: 200px;
+	padding: 10px;
+}
+
+.todo-list {
+	background-color: #ccc;
+}
+
+.todo-completed {
+	background-color: #0c8;
+}

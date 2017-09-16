@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS - Lesson 06</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="todo-block todo-list">
+			<ol id="todo_list">
+				
+			</ol>
+		</div>
+		<div class="todo-block todo-completed">
+			<ol id="todo_complete">
+				
+			</ol>
+		</div>
+	</div>
+	<div class="container">
+		<form id="todo_add">
+			<input type="text" name="todo_name" placeholder="Type todo item">
+			<input type="submit" value="Добавить">
+			<input type="reset" value="Clear">
+		</form>
+	</div>
+
+	<script>
+
+		;(function(){
+			"use strict";
+
+			document.getElementById('todo_add').onsubmit = function(event) {
+				var todoText = this.elements['todo_name'].value;
+
+				var todoList = document.getElementById('todo_list');
+				var todoItem = document.createElement('li'); // <li></li>
+
+				var todoItemText = '<input type="checkbox" onclick="completeItem(this)" data-item value="'+todoText+'">';
+				todoItemText += todoText;
+
+				todoItemText += ' [ <a href="#" onclick="itemDelete(this)">delete</a> ]';
+
+				todoItem.innerHTML = todoItemText; 
+				todoList.appendChild(todoItem);
+
+				this.elements['todo_name'].value = '';
+
+				event.preventDefault();			
+			};
+
+		})();
+
+		function completeItem(elem) {
+			var moveList;
+
+			if (!elem.checked) {
+				moveList = document.getElementById('todo_list');
+			} else {
+				moveList = document.getElementById('todo_complete');
+			}
+
+			var todoElem = elem.closest('li');
+			moveList.appendChild(todoElem);
+		}
+
+		function itemDelete(elem) {
+			elem.closest('li').remove();
+		};	
+	</script>
+</body>
+</html>
